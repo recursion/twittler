@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js"></script>
   </head>
   <body>
     <script>
@@ -11,7 +12,7 @@
         var $body = $('body');
         $body.html('');
 
-        var updateInterval = 500;
+        var updateTweetsInterval = 500;
         var tweetCount = streams.home.length;
 
         // startCount is the point in the tweets array that we want to update to.
@@ -26,7 +27,7 @@
             var $tweet = $('<div></div>');
 
 
-            $tweet.html(tweet.created_at + ": " + "<a href='#'>@" + tweet.user + "</a>" + ': ' + tweet.message);
+            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
             $tweet.prependTo($body);
             index -= 1;
           }
@@ -42,8 +43,17 @@
             updateTweets(tweetCount);
           }
           tweetCount = streams.home.length;
-        }, updateInterval);
+        }, updateTweetsInterval);
       });
+
+      // update timestamps
+      var updateTimestamps = setInterval(function() {
+        var timeStamps = $('time');
+        for (var i = 0; i < timeStamps.length; i++) {
+          // create a new data from the original created_at data-time data and pass it to timeago()
+          $(timeStamps[i]).text(jQuery.timeago(new Date($(timeStamps[i]).data('time'))));
+        }
+      }, 1000);
 
     </script>
   </body>
