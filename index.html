@@ -29,7 +29,9 @@
         updateTweets(0);
 
         var checkTweetsInterval = setInterval(function() {
-          updateTweets(tweetCount);
+          if (streams.home.length > tweetCount) {
+            updateTweets(tweetCount);
+          }
         }, 500);
         tweetCount = streams.home.length;
       });
