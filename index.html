@@ -12,7 +12,7 @@
         var $body = $('body');
         $body.html('');
 
-        var updateTimestampsInverval = 1000;
+        var updateTimestampsInterval = 1000;
         var updateTweetsInterval = 500;
         var tweetCount = streams.home.length;
 
@@ -54,7 +54,7 @@
             // create a new data from the original created_at data-time data and pass it to timeago()
             $(timeStamps[i]).text(jQuery.timeago(new Date($(timeStamps[i]).data('time'))));
           }
-        }, updateTimestampsInverval);
+        }, updateTimestampsInterval);
 
       });
 
