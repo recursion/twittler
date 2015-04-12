@@ -13,14 +13,21 @@
         var $body = $('body');
         $body.html('');
 
+        // Container section for tweet divs
         var $section = $('<section></section>');
         $section.addClass('container');
         $section.appendTo($body);
 
+        // Interval variables
         var updateTimestampsInterval = 1000;
         var updateTweetsInterval = 500;
+
+        // Initial tweet count
         var tweetCount = streams.home.length;
 
+        // ***************************
+        // updateTweets
+        // ***************************
         // startCount is the point in the tweets array that we want to update to.
         // we always start updating from the last tweet
         // so  if we wanted to update all tweets, we would use 0.
@@ -31,6 +38,7 @@
           while(index >= startCount){
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
+            $tweet.addClass('tweet');
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
             $tweet.prependTo($section);
@@ -44,7 +52,7 @@
 
         // Update tweets
         // Run every <updateInterval> seconds to update any new tweets.
-        var checkTweetsInterval = setInterval(function() {
+        var tweetsInterval = setInterval(function() {
           if (streams.home.length > tweetCount) {
             updateTweets(tweetCount);
           }
@@ -60,6 +68,12 @@
           }
         }, updateTimestampsInterval);
 
+        // Username button event handler
+        $('.tweet').on('click', 'a', function(event) {
+          event.stopPropagation();
+          event.preventDefault();
+          console.log($(this).text());
+        });
       });
 
 
