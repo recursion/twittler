@@ -24,3 +24,13 @@ body {
   border: 3px solid black;
   background-color: white;
 }
+.blurredLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(112, 112, 112, .95);
+  z-index: 1;
+}

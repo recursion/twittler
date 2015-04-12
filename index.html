@@ -30,7 +30,11 @@
         $userInfoPopup.addClass('userInfoPopup');
         $userInfoPopup.appendTo($body);
         $userInfoPopup.hide();
-
+        // blurred layer behind the userinfo window
+        var $blurredLayer = $('<div></div>');
+        $blurredLayer.addClass('blurredLayer');
+        $blurredLayer.appendTo($body);
+        $blurredLayer.hide();
 
         // ***************************
         // updateTweets
@@ -79,6 +83,7 @@
         $('.tweet').on('click', 'a', function(event) {
           event.stopPropagation();
           event.preventDefault();
+          $blurredLayer.show();
           $userInfoPopup.show();
           console.log($(this).text());
         });
