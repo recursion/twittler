@@ -13,6 +13,10 @@
         var $body = $('body');
         $body.html('');
 
+        var $section = $('<section></section>');
+        $section.addClass('container');
+        $section.appendTo($body);
+
         var updateTimestampsInterval = 1000;
         var updateTweetsInterval = 500;
         var tweetCount = streams.home.length;
@@ -29,7 +33,7 @@
             var $tweet = $('<div></div>');
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
-            $tweet.prependTo($body);
+            $tweet.prependTo($section);
             index -= 1;
           }
         };
