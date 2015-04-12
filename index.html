@@ -53,8 +53,10 @@
         // generally though, we will be updating to the last spot we started updating from.
         // .i.e. the place in the array we previously started updating from.
         var updateTweets = function(startCount) {
+
           var index = streams.home.length - 1;
           while(index >= startCount){
+
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
             $tweet.addClass('tweet');
@@ -62,7 +64,7 @@
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
             $tweet.prependTo($section);
 
-            // Username button event handler
+            // Username clicked event handler
             $tweet.on('click', 'a', usernameClickHandler);
 
             index -= 1;
