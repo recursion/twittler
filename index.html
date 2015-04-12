@@ -7,14 +7,18 @@
   <body>
     <script>
 
-
-
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
 
+        var updateInterval = 500;
         var tweetCount = streams.home.length;
 
+        // startCount is the point in the tweets array that we want to update to.
+        // we always start updating from the last tweet
+        // so  if we wanted to update all tweets, we would use 0.
+        // generally though, we will be updating to the last spot we started updating from.
+        // .i.e. the place in the array we previously started updating from.
         var updateTweets = function(startCount) {
           var index = streams.home.length - 1;
           while(index >= startCount){
@@ -26,14 +30,17 @@
           }
         };
 
+        // Initial tweet update - so we are updating from the current end of the streams.home array
+        // all the way to the zeroeth element of said array.
         updateTweets(0);
 
+        // Run a method every X seconds to update any new tweets.
         var checkTweetsInterval = setInterval(function() {
           if (streams.home.length > tweetCount) {
             updateTweets(tweetCount);
           }
           tweetCount = streams.home.length;
-        }, 500);
+        }, updateInterval);
       });
 
     </script>
