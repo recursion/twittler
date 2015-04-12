@@ -12,6 +12,7 @@
         var $body = $('body');
         $body.html('');
 
+        var updateTimestampsInverval = 1000;
         var updateTweetsInterval = 500;
         var tweetCount = streams.home.length;
 
@@ -37,6 +38,7 @@
         // all the way to the zeroeth element of said array.
         updateTweets(0);
 
+        // Update tweets
         // Run every <updateInterval> seconds to update any new tweets.
         var checkTweetsInterval = setInterval(function() {
           if (streams.home.length > tweetCount) {
@@ -44,16 +46,19 @@
           }
           tweetCount = streams.home.length;
         }, updateTweetsInterval);
+
+        // update timestamps
+        var updateTimestamps = setInterval(function() {
+          var timeStamps = $('time');
+          for (var i = 0; i < timeStamps.length; i++) {
+            // create a new data from the original created_at data-time data and pass it to timeago()
+            $(timeStamps[i]).text(jQuery.timeago(new Date($(timeStamps[i]).data('time'))));
+          }
+        }, updateTimestampsInverval);
+
       });
 
-      // update timestamps
-      var updateTimestamps = setInterval(function() {
-        var timeStamps = $('time');
-        for (var i = 0; i < timeStamps.length; i++) {
-          // create a new data from the original created_at data-time data and pass it to timeago()
-          $(timeStamps[i]).text(jQuery.timeago(new Date($(timeStamps[i]).data('time'))));
-        }
-      }, 1000);
+
 
     </script>
   </body>
