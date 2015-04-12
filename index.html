@@ -25,6 +25,13 @@
         // Initial tweet count
         var tweetCount = streams.home.length;
 
+        // setup a hidden modal window for viewing user timelines
+        var $userInfoPopup = $('<div></div>');
+        $userInfoPopup.addClass('userInfoPopup');
+        $userInfoPopup.appendTo($body);
+        $userInfoPopup.hide();
+
+
         // ***************************
         // updateTweets
         // ***************************
@@ -72,6 +79,7 @@
         $('.tweet').on('click', 'a', function(event) {
           event.stopPropagation();
           event.preventDefault();
+          $userInfoPopup.show();
           console.log($(this).text());
         });
       });
