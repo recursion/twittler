@@ -7,7 +7,7 @@
   <body>
     <script>
 
-      $(document).ready(function(){
+      $(document).ready(function() {
         var $body = $('body');
         $body.html('');
 
@@ -34,7 +34,7 @@
         // all the way to the zeroeth element of said array.
         updateTweets(0);
 
-        // Run a method every X seconds to update any new tweets.
+        // Run every <updateInterval> seconds to update any new tweets.
         var checkTweetsInterval = setInterval(function() {
           if (streams.home.length > tweetCount) {
             updateTweets(tweetCount);
