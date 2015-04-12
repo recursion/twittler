@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="twittler.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <script src="jquery.timeago.js"></script>
@@ -26,7 +27,6 @@
           while(index >= startCount){
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
-
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
             $tweet.prependTo($body);
