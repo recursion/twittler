@@ -25,16 +25,24 @@
         // Initial tweet count
         var tweetCount = streams.home.length;
 
-        // setup a hidden modal window for viewing user timelines
-        var $userInfoPopup = $('<div></div>');
-        $userInfoPopup.addClass('userInfoPopup');
-        $userInfoPopup.appendTo($body);
-        $userInfoPopup.hide();
+        /* USER INFO WINDOW */
         // blurred layer behind the userinfo window
         var $blurredLayer = $('<div></div>');
         $blurredLayer.addClass('blurredLayer');
         $blurredLayer.appendTo($body);
         $blurredLayer.hide();
+        // modal window for viewing user timelines
+        var $userInfoPopup = $('<div></div>');
+        $userInfoPopup.addClass('userInfoPopup');
+        $userInfoPopup.appendTo($body);
+        $userInfoPopup.hide();
+        // button for closing user info window
+        var $closeUserInfoPopupButton = $('<button></button>');
+        $closeUserInfoPopupButton.text('X');
+        $closeUserInfoPopupButton.addClass('closeUserInfoPopupButton');
+        $closeUserInfoPopupButton.appendTo($userInfoPopup);
+
+
 
         // ***************************
         // updateTweets
@@ -87,7 +95,15 @@
           $userInfoPopup.show();
           console.log($(this).text());
         });
+
+        $('.closeUserInfoPopupButton').on('click', function() {
+          $blurredLayer.hide();
+          $userInfoPopup.hide();
+        });
+
+
       });
+
 
 
 
