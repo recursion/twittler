@@ -61,6 +61,10 @@
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
             $tweet.prependTo($section);
+
+            // Username button event handler
+            $tweet.on('click', 'a', usernameClickHandler);
+
             index -= 1;
           }
         };
@@ -87,20 +91,22 @@
           }
         }, updateTimestampsInterval);
 
-        // Username button event handler
-        $('.tweet').on('click', 'a', function(event) {
+
+
+        $('.closeUserInfoPopupButton').on('click', function(event) {
+          event.stopPropagation();
+          event.preventDefault();
+          $blurredLayer.hide();
+          $userInfoPopup.hide();
+        });
+
+        var usernameClickHandler = function(event) {
           event.stopPropagation();
           event.preventDefault();
           $blurredLayer.show();
           $userInfoPopup.show();
           console.log($(this).text());
-        });
-
-        $('.closeUserInfoPopupButton').on('click', function() {
-          $blurredLayer.hide();
-          $userInfoPopup.hide();
-        });
-
+        };
 
       });
 
