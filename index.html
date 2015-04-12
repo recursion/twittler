@@ -11,15 +11,30 @@
         var $body = $('body');
         $body.html('');
 
+        var startCount = streams.home.length;
+
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text(tweet.created_at + ":" + ' @' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
         }
 
+        var checkTweetsInterval = setInterval(function() {
+          var index = streams.home.length - 1;
+          if (streams.home.length >  startCount) {
+            while(index >= startCount){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              $tweet.text(tweet.created_at + ":" + ' @' + tweet.user + ': ' + tweet.message);
+              $tweet.prependTo($body);
+              index -= 1;
+            }
+            startCount = streams.home.length;
+          }
+        }, 500);
       });
 
     </script>
