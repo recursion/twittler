@@ -77,7 +77,7 @@
         $headControls.appendTo($header);
 
         // View twitts button
-        var $viewTwittsButton = $('<button></button>');
+        var $viewTwittsButton = $('<button class="viewTwittsButton"></button>');
         $viewTwittsButton.text('view new');
         $viewTwittsButton.appendTo($headControls);
         $viewTwittsButton.on('click', function() {
@@ -228,6 +228,13 @@
           }
         }, updateTimestampsInterval);
 
+        // Update the new tweets number when button is visible
+        var updateNewTweetsCount = setInterval(function() {
+          if($('.viewTwittsButton').is(':visible')) {
+            var twittCount = streams.home.length - tweetCount;
+            $('.viewTwittsButton').text('view ' + twittCount + ' new');
+          }
+        }, 1000);
 
 // END DOCUMENT READY
       });
