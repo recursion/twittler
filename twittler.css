@@ -16,6 +16,7 @@ header {
   margin: 0 auto;
 
   background: linear-gradient(grey, blue);
+
   color: white;
   text-shadow: -2px -2px 2px black;
 }
