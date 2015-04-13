@@ -32,20 +32,21 @@ header button {
   border-radius: 15px;
   vertical-align: middle;
 }
+header button:hover {
+  background-color: rgba(0, 200, 0, .5);
+}
 header > button {
   float: left;
   margin: 5px 5px;
 }
 header nav {
   display: inline;
-  margin: 0 auto;
+  margin: 0 0 0 -50px;
 }
 header nav button {
   margin: 0 20px 7px 20px;
 }
-header nav button:hover {
-  background-color: rgba(0, 200, 0, .5);
-}
+
 .addPost {
   width: 20%;
   margin: 3px auto;

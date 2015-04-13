@@ -54,8 +54,9 @@
 
         // Automatic Update tweets
         // Run every <updateInterval> seconds to update any new tweets.
+        var tweetsInterval;
         var autoUpdateTweets = function() {
-          var tweetsInterval = setInterval(function() {
+          tweetsInterval = setInterval(function() {
             if (streams.home.length > tweetCount) {
               updateTweets(tweetCount);
             }
@@ -84,11 +85,13 @@
         });
 
         var $autoUpdatesOffButton = $('<button></button>');
-        $autoUpdatesOffButton.text('view new');
-        $autoUpdatesOffButton.appendTo($headControls);
+        $autoUpdatesOffButton.text('Turn off automatic updates');
+        $autoUpdatesOffButton.appendTo($header);
         $autoUpdatesOffButton.hide();
         $autoUpdatesOffButton.on('click', function() {
+          clearInterval(tweetsInterval);
           $autoFeedUpdateButton.show();
+          $autoUpdatesOffButton.hide();
           $viewTwittsButton.show();
         });
 
@@ -99,6 +102,7 @@
         $autoFeedUpdateButton.on('click', function() {
           autoUpdateTweets();
           $autoFeedUpdateButton.hide();
+          $autoUpdatesOffButton.show();
           $viewTwittsButton.hide();
         });
 
@@ -109,7 +113,7 @@
 
         // add post button
         var $addPostButton = $('<button></button>');
-        $addPostButton.text('new twitt');
+        $addPostButton.text('create new');
         $addPostButton.appendTo($headControls);
 
         // create a div and input field for new twitts
