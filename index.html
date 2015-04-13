@@ -13,6 +13,13 @@
         var $body = $('body');
         $body.html('');
 
+        // Set up the header
+        var $header = $('<header></header>');
+        $header.appendTo($body);
+        var $title = $('<h1></h1>');
+        $title.text('Twittler!');
+        $title.appendTo($header);
+
         // Container section for tweet divs
         var $section = $('<section></section>');
         $section.addClass('container');
@@ -24,6 +31,8 @@
 
         // Initial tweet count
         var tweetCount = streams.home.length;
+
+
 
         /* USER INFO WINDOW */
         // blurred layer behind the userinfo window
@@ -44,9 +53,9 @@
 
 
 
-        // ***************************
-        // updateTweets
-        // ***************************
+        /***************************
+            UPDATE TWEETS
+        ***************************/
         // startCount is the point in the tweets array that we want to update to.
         // we always start updating from the last tweet
         // so  if we wanted to update all tweets, we would use 0.
@@ -94,7 +103,11 @@
         }, updateTimestampsInterval);
 
 
+        /**********************************
+              EVENT HANDLERS
+        ***********************************/
 
+        // Close userInfoPopup
         $('.closeUserInfoPopupButton').on('click', function(event) {
           event.stopPropagation();
           event.preventDefault();
