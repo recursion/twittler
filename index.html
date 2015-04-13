@@ -92,7 +92,7 @@
             var $tweet = $('<div></div>');
             $tweet.addClass('tweet');
 
-            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: ' + tweet.message);
+            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time><br>' + tweet.message + '<hr>');
             $tweet.appendTo($userInfoPopup);
 
             index -= 1;
@@ -118,7 +118,7 @@
             var $tweet = $('<div></div>');
             $tweet.addClass('tweet');
 
-            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
+            $tweet.html('<a class="username" href="#">@' + tweet.user + '</a>     <time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time><br>'+ tweet.message + '<hr>');
             $tweet.prependTo($section);
 
             // Username clicked event handler

@@ -12,21 +12,23 @@ header {
   font-weight: bold;
   padding: 10px 0 0 0 ;
   margin: 2px auto;
-  background-color: grey;
-  border: 2px dashed black;
+  background: linear-gradient(grey, blue);
+  border: 2px solid blue;
   border-radius: 15px;
   color: white;
   text-shadow: -2px -2px 2px black;
 }
 .container {
   position: relative;
-  width: 59%;
+  width: 58%;
   padding: 15px;
   margin: 0 auto;
 
   background-color: white;
+  border: 2px solid blue;
   border-radius: 15px;
   line-height: 1.5em;
+  font-size: 1.25em;
 }
 .container a, .container a:visited {
   text-decoration: none;
@@ -47,11 +49,13 @@ header {
   z-index: 5;
   overflow-y: hidden;
 
-  line-height: 1.25em;
-  border: 3px solid black;
+  line-height: 1.5em;
+  border: 3px solid blue;
+  border-radius: 5px;
   background-color: white;
 }
 time {
+  font-size: .5em;
   font-style: italic;
 }
 .blurredLayer {
@@ -76,12 +80,12 @@ time {
   position: fixed;
   width: 90%;
   top: 0;
-  margin: 3px 3px 3px 3px;
+  margin: 5px 5px 5px 5px;
   left: 0;
   float: left;
-  background-color: grey;
+  background: linear-gradient(grey, blue);
   color: white;
   border-radius: 15px;
-  padding: 3px;
+  padding: 3px 0 3px 10px;
   vertical-align: middle;
 }
