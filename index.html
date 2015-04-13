@@ -15,8 +15,19 @@
         var $body = $('body');
         $body.html('');
 
-        // Create user
+        // Create this user
         streams.users.twittlerKing = [];
+
+        // Interval variables
+        var updateTimestampsInterval = 1000;
+        var updateTweetsInterval = 1000;
+
+        // Initial tweet count
+        var tweetCount = streams.home.length;
+
+        /********************************************
+               CREATE PAGE ELEMENTS
+       *********************************************/
 
         // Set up the header
         var $header = $('<header></header>');
@@ -31,20 +42,24 @@
         $addPostButton.text('add twitt');
         $addPostButton.appendTo($header);
 
+        // create a div and input field for new twitts
         var $post = $('<div></div>');
         $post.html('<input type="textarea">');
         $post.addClass('addPost');
         $header.after($post);
         $post.hide();
 
+        // create the submit button for new twitts
         var $submitPostButton = $('<button></button>');
         $submitPostButton.html('Submit');
         $submitPostButton.appendTo($post);
 
+        // new twitt button event handler
         $addPostButton.on('click', function() {
           $post.toggle();
         });
 
+        // submit twitt button event handler
         $submitPostButton.on('click', function() {
           var tweet = {};
           tweet.user = 'twittlerKing';
@@ -60,17 +75,9 @@
         $section.addClass('container');
         $section.appendTo($body);
 
-        // Interval variables
-        var updateTimestampsInterval = 1000;
-        var updateTweetsInterval = 1000;
-
-        // Initial tweet count
-        var tweetCount = streams.home.length;
-
-
 
         /****************************************
-                  USER INFO WINDOW
+          USER TIMELINE INFO WINDOW
         *****************************************/
 
         // blurred layer behind the userinfo window
@@ -84,7 +91,6 @@
         $userInfoPopup.addClass('userInfoPopup');
         $userInfoPopup.appendTo($body);
         $userInfoPopup.hide();
-
 
         // username clicked event handler
         var usernameClickHandler = function(event) {
@@ -165,7 +171,7 @@
         // all the way to the zeroeth element of said array.
         updateTweets(0);
 
-        // Update tweets
+        // Automatic Update tweets
         // Run every <updateInterval> seconds to update any new tweets.
         var tweetsInterval = setInterval(function() {
           if (streams.home.length > tweetCount) {
