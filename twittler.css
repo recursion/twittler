@@ -23,11 +23,14 @@ header {
 
   background-color: white;
   border-radius: 15px;
+  line-height: 1.5em;
 }
 .userInfoPopup {
   position: fixed;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
   width: 600px;
