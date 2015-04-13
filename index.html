@@ -65,9 +65,18 @@
 
           // Populate the user info popup window
           var username = $(this).text().slice(1);
-          console.log(username);
           var userTweets = streams.users[username];
-          console.log(userTweets);
+          var index = userTweets.length -1;
+          while (index >= 0) {
+            var tweet = userTweets[index];
+            var $tweet = $('<div></div>');
+            $tweet.addClass('tweet');
+
+            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
+            $tweet.prependTo($userInfoPopup);
+
+            index -= 1;
+          }
         };
 
         // Close userInfoPopup
@@ -130,13 +139,8 @@
         }, updateTimestampsInterval);
 
 
-
-
-
+// END DOCUMENT READY
       });
-
-
-
 
     </script>
   </body>
