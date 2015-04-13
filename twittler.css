@@ -29,7 +29,7 @@ header > button {
   display: inline;
   background-color: rgba(0, 0, 0, 0);
   color: white;
-  border-radius: 25%;
+  border-radius: 15px;
   margin-left: 100px;
   margin-bottom: 5px;
   vertical-align: middle;
@@ -40,7 +40,11 @@ header > button {
   font-size: 1.25em;
 }
 .addPost input {
-  width: 80%;
+  width: 75%;
+  font-size: 1em;
+}
+.addPost button{
+  font-size: 1em;
 }
 .container {
   position: relative;

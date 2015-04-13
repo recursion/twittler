@@ -32,7 +32,7 @@
         $addPostButton.appendTo($header);
 
         var $post = $('<div></div>');
-        $post.html('<input type="textarea" class="newTweet">');
+        $post.html('<input type="textarea">');
         $post.addClass('addPost');
         $header.after($post);
         $post.hide();
@@ -62,7 +62,7 @@
 
         // Interval variables
         var updateTimestampsInterval = 1000;
-        var updateTweetsInterval = 500;
+        var updateTweetsInterval = 1000;
 
         // Initial tweet count
         var tweetCount = streams.home.length;
