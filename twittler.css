@@ -1,5 +1,6 @@
 body {
   background-color: grey;
+  font-family: 'Open Sans', sans-serif;
 }
 header {
   width: 60%;
@@ -67,6 +68,8 @@ time {
   top: 0;
   right: 0;
   margin: 3px 3px 0 0;
+  font-size: 1.25em;
+  color: red;
 }
 .userTitle {
   position: fixed;
