@@ -25,13 +25,23 @@ header h1 {
   padding: 0;
   margin: 0 auto;
 }
-header nav button {
+header button {
   display: inline;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border-radius: 15px;
-  margin: 0 20px 7px 20px;
   vertical-align: middle;
+}
+header > button {
+  float: left;
+  margin: 5px 5px;
+}
+header nav {
+  display: inline;
+  margin: 0 auto;
+}
+header nav button {
+  margin: 0 20px 7px 20px;
 }
 header nav button:hover {
   background-color: rgba(0, 200, 0, .5);

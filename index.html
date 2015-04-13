@@ -25,6 +25,44 @@
         // Initial tweet count
         var tweetCount = streams.home.length;
 
+        /***************************
+            UPDATE TWEETS
+        ***************************/
+        // startCount is the point in the tweets array that we want to update to.
+        // we always start updating from the last tweet
+        // so  if we wanted to update all tweets, we would use 0.
+        // generally though, we will be updating to the last spot we started updating from.
+        // .i.e. the place in the array we previously started updating from.
+        var updateTweets = function(startCount) {
+
+          var index = streams.home.length - 1;
+          while(index >= startCount){
+
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.addClass('tweet');
+
+            $tweet.html('<a class="username" href="#">@' + tweet.user + '</a>     <time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time><br>'+ tweet.message + '<hr>');
+            $tweet.prependTo($section);
+
+            // Username clicked event handler
+            $tweet.on('click', 'a', usernameClickHandler);
+
+            index -= 1;
+          }
+        };
+
+        // Automatic Update tweets
+        // Run every <updateInterval> seconds to update any new tweets.
+        var autoUpdateTweets = function() {
+          var tweetsInterval = setInterval(function() {
+            if (streams.home.length > tweetCount) {
+              updateTweets(tweetCount);
+            }
+            tweetCount = streams.home.length;
+          }, updateTweetsInterval);
+        };
+
         /********************************************
                CREATE PAGE ELEMENTS
        *********************************************/
@@ -37,10 +75,32 @@
         var $headControls = $('<nav></nav>');
         $headControls.appendTo($header);
 
+        var $viewTwittsButton = $('<button></button>');
+        $viewTwittsButton.text('view new');
+        $viewTwittsButton.appendTo($headControls);
+        $viewTwittsButton.on('click', function() {
+          updateTweets(tweetCount);
+          tweetCount = streams.home.length;
+        });
+
+        var $autoUpdatesOffButton = $('<button></button>');
+        $autoUpdatesOffButton.text('view new');
+        $autoUpdatesOffButton.appendTo($headControls);
+        $autoUpdatesOffButton.hide();
+        $autoUpdatesOffButton.on('click', function() {
+          $autoFeedUpdateButton.show();
+          $viewTwittsButton.show();
+        });
+
         // auto feed update button
         var $autoFeedUpdateButton = $('<button></button>');
         $autoFeedUpdateButton.text('auto update');
-        $autoFeedUpdateButton.appendTo($headControls);
+        $autoFeedUpdateButton.appendTo($header);
+        $autoFeedUpdateButton.on('click', function() {
+          autoUpdateTweets();
+          $autoFeedUpdateButton.hide();
+          $viewTwittsButton.hide();
+        });
 
         // main title
         var $title = $('<h1></h1>');
@@ -149,46 +209,9 @@
 
         };
 
-
-        /***************************
-            UPDATE TWEETS
-        ***************************/
-        // startCount is the point in the tweets array that we want to update to.
-        // we always start updating from the last tweet
-        // so  if we wanted to update all tweets, we would use 0.
-        // generally though, we will be updating to the last spot we started updating from.
-        // .i.e. the place in the array we previously started updating from.
-        var updateTweets = function(startCount) {
-
-          var index = streams.home.length - 1;
-          while(index >= startCount){
-
-            var tweet = streams.home[index];
-            var $tweet = $('<div></div>');
-            $tweet.addClass('tweet');
-
-            $tweet.html('<a class="username" href="#">@' + tweet.user + '</a>     <time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time><br>'+ tweet.message + '<hr>');
-            $tweet.prependTo($section);
-
-            // Username clicked event handler
-            $tweet.on('click', 'a', usernameClickHandler);
-
-            index -= 1;
-          }
-        };
-
         // Initial tweet update - so we are updating from the current end of the streams.home array
         // all the way to the zeroeth element of said array.
         updateTweets(0);
-
-        // Automatic Update tweets
-        // Run every <updateInterval> seconds to update any new tweets.
-        var tweetsInterval = setInterval(function() {
-          if (streams.home.length > tweetCount) {
-            updateTweets(tweetCount);
-          }
-          tweetCount = streams.home.length;
-        }, updateTweetsInterval);
 
         // update timestamps
         var updateTimestamps = setInterval(function() {
