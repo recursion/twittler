@@ -34,22 +34,49 @@
 
 
 
-        /* USER INFO WINDOW */
+        /****************************************
+                  USER INFO WINDOW
+        *****************************************/
+
         // blurred layer behind the userinfo window
         var $blurredLayer = $('<div></div>');
         $blurredLayer.addClass('blurredLayer');
         $blurredLayer.appendTo($body);
         $blurredLayer.hide();
+
         // modal window for viewing user timelines
         var $userInfoPopup = $('<div></div>');
         $userInfoPopup.addClass('userInfoPopup');
         $userInfoPopup.appendTo($body);
         $userInfoPopup.hide();
+
         // button for closing user info window
         var $closeUserInfoPopupButton = $('<button></button>');
         $closeUserInfoPopupButton.text('X');
         $closeUserInfoPopupButton.addClass('closeUserInfoPopupButton');
         $closeUserInfoPopupButton.appendTo($userInfoPopup);
+
+        // username clicked event handler
+        var usernameClickHandler = function(event) {
+          event.stopPropagation();
+          event.preventDefault();
+          $blurredLayer.show();
+          $userInfoPopup.show();
+
+          // Populate the user info popup window
+          var username = $(this).text().slice(1);
+          console.log(username);
+          var userTweets = streams.users[username];
+          console.log(userTweets);
+        };
+
+        // Close userInfoPopup
+        $('.closeUserInfoPopupButton').on('click', function(event) {
+          event.stopPropagation();
+          event.preventDefault();
+          $blurredLayer.hide();
+          $userInfoPopup.hide();
+        });
 
 
 
@@ -103,25 +130,8 @@
         }, updateTimestampsInterval);
 
 
-        /**********************************
-              EVENT HANDLERS
-        ***********************************/
 
-        // Close userInfoPopup
-        $('.closeUserInfoPopupButton').on('click', function(event) {
-          event.stopPropagation();
-          event.preventDefault();
-          $blurredLayer.hide();
-          $userInfoPopup.hide();
-        });
 
-        var usernameClickHandler = function(event) {
-          event.stopPropagation();
-          event.preventDefault();
-          $blurredLayer.show();
-          $userInfoPopup.show();
-          console.log($(this).text());
-        };
 
       });
 
