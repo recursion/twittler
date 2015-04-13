@@ -34,15 +34,15 @@ header {
   transform: translate(-50%, -50%);
 
   width: 600px;
+  min-height: 90%;
   margin: 0 auto;
   padding: 40px 10px 10px 10px;
   z-index: 5;
+  overflow-y: hidden;
 
+  line-height: 1.25em;
   border: 3px solid black;
   background-color: white;
-}
-.userInfoContent {
-  overflow-y: auto;
 }
 .blurredLayer {
   position: fixed;

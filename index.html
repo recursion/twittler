@@ -77,11 +77,6 @@
             $userInfoPopup.html('');
           });
 
-          // Content area for user info
-          var $userInfoContent = $('<div></div>');
-          $userInfoContent.addClass('userInfoContent');
-          $userInfoContent.appendTo($userInfoPopup);
-
           // Show em the goods chuck!
           $blurredLayer.show();
           $userInfoPopup.show();
@@ -96,7 +91,7 @@
             $tweet.addClass('tweet');
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: ' + tweet.message);
-            $tweet.appendTo($userInfoContent);
+            $tweet.appendTo($userInfoPopup);
 
             index -= 1;
           }
