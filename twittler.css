@@ -21,8 +21,26 @@ header {
   text-shadow: -2px -2px 2px black;
 }
 header h1 {
+  display: inline;
   padding: 0;
   margin: 0 auto;
+}
+header > button {
+  display: inline;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border-radius: 25%;
+  margin-left: 100px;
+  margin-bottom: 5px;
+  vertical-align: middle;
+}
+.addPost {
+  width: 20%;
+  margin: 3px auto;
+  font-size: 1.25em;
+}
+.addPost input {
+  width: 80%;
 }
 .container {
   position: relative;

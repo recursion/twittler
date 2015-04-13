@@ -15,6 +15,9 @@
         var $body = $('body');
         $body.html('');
 
+        // Create user
+        streams.users.twittlerKing = [];
+
         // Set up the header
         var $header = $('<header></header>');
         $header.appendTo($body);
@@ -22,6 +25,33 @@
         var $title = $('<h1></h1>');
         $title.text('@Twittler!');
         $title.appendTo($header);
+
+        // add post button
+        var $addPostButton = $('<button></button>');
+        $addPostButton.text('add twitt');
+        $addPostButton.appendTo($header);
+
+        var $post = $('<div></div>');
+        $post.html('<input type="textarea" class="newTweet">');
+        $post.addClass('addPost');
+        $header.after($post);
+        $post.hide();
+
+        var $submitPostButton = $('<button></button>');
+        $submitPostButton.html('Submit');
+        $submitPostButton.appendTo($post);
+
+        $addPostButton.on('click', function() {
+          $post.toggle();
+        });
+
+        $submitPostButton.on('click', function() {
+          var tweet = {};
+          tweet.user = 'twittlerKing';
+          tweet.message = $('.newTweet').val();
+          tweet.created_at = new Date();
+          addTweet(tweet);
+        });
 
         // Container section for tweet divs
         var $section = $('<section></section>');
