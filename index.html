@@ -55,6 +55,11 @@
           event.stopPropagation();
           event.preventDefault();
 
+          var title = $('<h3></h3>');
+          title.text($(this).text());
+          title.addClass('userTitle');
+          title.prependTo($userInfoPopup);
+
           // create button for closing user info window
           var $closeUserInfoPopupButton = $('<button></button>');
           $closeUserInfoPopupButton.text('X');
@@ -87,10 +92,7 @@
 
             index -= 1;
           }
-          var title = $('<h3></h3>');
-          title.text($(this).text());
-          title.addClass('userTitle');
-          title.prependTo($userInfoPopup);
+
         };
 
 
