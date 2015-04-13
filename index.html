@@ -35,8 +35,9 @@
         // .i.e. the place in the array we previously started updating from.
         var updateTweets = function(startCount) {
 
-          var index = streams.home.length - 1;
-          while(index >= startCount){
+          var index = startCount;
+          var end = streams.home.length - 1;
+          while(index <= end){
 
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
@@ -48,7 +49,7 @@
             // Username clicked event handler
             $tweet.on('click', 'a', usernameClickHandler);
 
-            index -= 1;
+            index += 1;
           }
         };
 
