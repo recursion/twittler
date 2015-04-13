@@ -34,6 +34,7 @@ header {
   width: 600px;
   height: 60%;
   margin: 0 auto;
+  padding: 10px;
   z-index: 5;
 
   border: 3px solid black;
@@ -53,4 +54,12 @@ header {
   position: absolute;
   top: 0;
   right: 0;
+  margin: 3px 3px 0 0;
+}
+.userTitle {
+  background-color: grey;
+  color: white;
+  border-radius: 15px;
+  padding: 1px;
+  vertical-align: middle;
 }

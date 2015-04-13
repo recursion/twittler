@@ -50,16 +50,26 @@
         $userInfoPopup.appendTo($body);
         $userInfoPopup.hide();
 
-        // button for closing user info window
-        var $closeUserInfoPopupButton = $('<button></button>');
-        $closeUserInfoPopupButton.text('X');
-        $closeUserInfoPopupButton.addClass('closeUserInfoPopupButton');
-        $closeUserInfoPopupButton.appendTo($userInfoPopup);
-
         // username clicked event handler
         var usernameClickHandler = function(event) {
           event.stopPropagation();
           event.preventDefault();
+
+          // create button for closing user info window
+          var $closeUserInfoPopupButton = $('<button></button>');
+          $closeUserInfoPopupButton.text('X');
+          $closeUserInfoPopupButton.addClass('closeUserInfoPopupButton');
+          $closeUserInfoPopupButton.appendTo($userInfoPopup);
+
+          // Close userInfoPopup
+          $('.closeUserInfoPopupButton').on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            $blurredLayer.hide();
+            $userInfoPopup.hide();
+            $userInfoPopup.html('');
+          });
+
           $blurredLayer.show();
           $userInfoPopup.show();
 
@@ -72,20 +82,18 @@
             var $tweet = $('<div></div>');
             $tweet.addClass('tweet');
 
-            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: <a href="#">@' + tweet.user + '</a>: ' + tweet.message);
+            $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: ' + tweet.message);
             $tweet.prependTo($userInfoPopup);
 
             index -= 1;
           }
+          var title = $('<h3></h3>');
+          title.text($(this).text());
+          title.addClass('userTitle');
+          title.prependTo($userInfoPopup);
         };
 
-        // Close userInfoPopup
-        $('.closeUserInfoPopupButton').on('click', function(event) {
-          event.stopPropagation();
-          event.preventDefault();
-          $blurredLayer.hide();
-          $userInfoPopup.hide();
-        });
+
 
 
 
