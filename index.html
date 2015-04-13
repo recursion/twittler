@@ -33,14 +33,24 @@
         var $header = $('<header></header>');
         $header.appendTo($body);
 
+        // create container for title and controls
+        var $headControls = $('<nav></nav>');
+        $headControls.appendTo($header);
+
+        // auto feed update button
+        var $autoFeedUpdateButton = $('<button></button>');
+        $autoFeedUpdateButton.text('auto update');
+        $autoFeedUpdateButton.appendTo($headControls);
+
+        // main title
         var $title = $('<h1></h1>');
         $title.text('@Twittler!');
-        $title.appendTo($header);
+        $title.appendTo($headControls);
 
         // add post button
         var $addPostButton = $('<button></button>');
-        $addPostButton.text('add twitt');
-        $addPostButton.appendTo($header);
+        $addPostButton.text('new twitt');
+        $addPostButton.appendTo($headControls);
 
         // create a div and input field for new twitts
         var $post = $('<div></div>');
