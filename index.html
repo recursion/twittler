@@ -50,11 +50,13 @@
         $userInfoPopup.appendTo($body);
         $userInfoPopup.hide();
 
+
         // username clicked event handler
         var usernameClickHandler = function(event) {
           event.stopPropagation();
           event.preventDefault();
 
+          // Create a title element for the user info window
           var title = $('<h3></h3>');
           title.text($(this).text());
           title.addClass('userTitle');
@@ -75,10 +77,16 @@
             $userInfoPopup.html('');
           });
 
+          // Content area for user info
+          var $userInfoContent = $('<div></div>');
+          $userInfoContent.addClass('userInfoContent');
+          $userInfoContent.appendTo($userInfoPopup);
+
+          // Show em the goods chuck!
           $blurredLayer.show();
           $userInfoPopup.show();
 
-          // Populate the user info popup window
+          // Populate the user info popup window with user data
           var username = $(this).text().slice(1);
           var userTweets = streams.users[username];
           var index = userTweets.length -1;
@@ -88,7 +96,7 @@
             $tweet.addClass('tweet');
 
             $tweet.html('<time data-time="' + tweet.created_at + '">' + jQuery.timeago(tweet.created_at) + '</time>: ' + tweet.message);
-            $tweet.prependTo($userInfoPopup);
+            $tweet.appendTo($userInfoContent);
 
             index -= 1;
           }
