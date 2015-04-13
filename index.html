@@ -76,6 +76,7 @@
         var $headControls = $('<nav></nav>');
         $headControls.appendTo($header);
 
+        // View twitts button
         var $viewTwittsButton = $('<button></button>');
         $viewTwittsButton.text('view new');
         $viewTwittsButton.appendTo($headControls);
@@ -84,24 +85,25 @@
           tweetCount = streams.home.length;
         });
 
+        // Button for turning automatic updates off
         var $autoUpdatesOffButton = $('<button></button>');
         $autoUpdatesOffButton.text('Turn off automatic updates');
         $autoUpdatesOffButton.appendTo($header);
         $autoUpdatesOffButton.hide();
         $autoUpdatesOffButton.on('click', function() {
           clearInterval(tweetsInterval);
-          $autoFeedUpdateButton.show();
+          $autoUpdatesOnButton.show();
           $autoUpdatesOffButton.hide();
           $viewTwittsButton.show();
         });
 
-        // auto feed update button
-        var $autoFeedUpdateButton = $('<button></button>');
-        $autoFeedUpdateButton.text('auto update');
-        $autoFeedUpdateButton.appendTo($header);
-        $autoFeedUpdateButton.on('click', function() {
+        // auto updates on button
+        var $autoUpdatesOnButton = $('<button></button>');
+        $autoUpdatesOnButton.text('Turn on automatic updates');
+        $autoUpdatesOnButton.appendTo($header);
+        $autoUpdatesOnButton.on('click', function() {
           autoUpdateTweets();
-          $autoFeedUpdateButton.hide();
+          $autoUpdatesOnButton.hide();
           $autoUpdatesOffButton.show();
           $viewTwittsButton.hide();
         });
@@ -118,7 +120,7 @@
 
         // create a div and input field for new twitts
         var $post = $('<div></div>');
-        $post.html('<input type="textarea">');
+        $post.html('<input type="textarea" class="newTweet">');
         $post.addClass('addPost');
         $header.after($post);
         $post.hide();
