@@ -51,6 +51,8 @@
           tweet.message = $('.newTweet').val();
           tweet.created_at = new Date();
           addTweet(tweet);
+          $('.newTweet').val('');
+          $($post).hide();
         });
 
         // Container section for tweet divs
